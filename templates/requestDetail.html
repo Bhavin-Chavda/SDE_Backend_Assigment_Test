@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    
+</head>
+<body>
+    <div class="welcome-square">
+        <h3>Original and Processed Images for Request Id : {{request_id}}</h3>
+    </div>
+    <ul>
+        {% for all_requests_image in all_requests_images %}
+    <ul>
+        <li>
+            <button class="inline custom-button" onclick="location.href='{{ all_requests_image.LocalOriginalImagePath }}'">
+                {{ all_requests_image.LocalOriginalImagePath }}
+            </button>
+            <span class="inline-block">&nbsp;&nbsp;</span>
+            <button class="inline custom-button" onclick="location.href='{{ all_requests_image.LocalProcessedImagePath }}'">
+                {{ all_requests_image.LocalProcessedImagePath }}
+            </button>
+        </li>
+        <br>
+    </ul>
+    {% endfor %}
+    </ul>
+</body>
+</html>

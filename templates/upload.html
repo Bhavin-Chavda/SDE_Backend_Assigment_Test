@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script>
+        function checkFile() {
+            const fileInput = document.getElementById('file');
+            const filePath = fileInput.value;
+            const allowedExtensions = /(\.csv)$/i;
+            if (!allowedExtensions.exec(filePath)) {
+                alert('Please upload a CSV file.');
+                fileInput.value = '';
+                return false;
+            } else {
+                return true;
+            }
+        }
+        function redirectToAnotherPage() {
+            window.location.href = "/requests";
+        }
+        function redirectToAnotherUploadPage() {
+            window.location.href = "/upload";
+        }
+    </script>
+</head>
+<body>
+    <div class="welcome-square">
+        Upload & Process Your File here
+    </div>
+    <br>
+    <div class="container">
+        <form action="{{ url_for('create_request_id') }}" method="post" enctype="multipart/form-data" onsubmit="return checkFile()">
+            <input type="file" name="file" id="file">
+            <button class="get-started-btn" type="submit">Upload & Process</button>
+        </form>
+    </div>
+    <br>
+
+    <div class="container">
+        <button class="get-started-btn" onclick="redirectToAnotherPage()">View Processed Request</button>
+    </div>
+
+    <div class="container">
+        {% if message %}
+            <p>{{ message }}</p>
+            <button class="get-started-btn" onclick="redirectToAnotherUploadPage()">Upload Next File</button>
+        {% endif %}
+    </div>
+
+    
+</body>
+</html>

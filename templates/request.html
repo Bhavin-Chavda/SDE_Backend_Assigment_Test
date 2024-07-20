@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Page</title>
+    <style>
+        .inline {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .inline-block {
+            display: inline-block;
+        }
+
+        .custom-button {
+            background-color: #4ca7af;
+            /* Green */
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+    <h1>Request Page</h1>
+    <ul>
+        {% for request in all_requests %}
+        <ul>
+            <li>
+
+                <button class="inline custom-button" onclick="window.location.href='/requestDetailpage/{{ request.request_id }}'">{{ request.request_id
+                    }}</button>
+                <span class="inline-block">&nbsp;&nbsp;</span>
+                <p class="inline">{{ request.newfilename }}</p>
+                <span class="inline-block">&nbsp;&nbsp;</span>
+                <p class="inline">{{ request.current_date_time }}</p>
+
+                <!-- {{ request }} -->
+            </li>
+            <br>
+        </ul>
+        {% endfor %}
+    </ul>
+</body>
+
+</html>
