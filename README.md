@@ -44,5 +44,5 @@ Step3:
   );
 
 Step 4 (Run the Application and followed the step mentioned in the report)
-  Python app.pu
+  Python app.py
   
